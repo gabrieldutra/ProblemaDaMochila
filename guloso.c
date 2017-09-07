@@ -80,7 +80,7 @@ int main(int argc, char *argv[]){
         Item *item = entrada.itens;
         while(item != NULL){ // Percorre todos os itens para encontrar o ótimo local
             double custoBeneficio = (double) item->valor/item->peso;
-            if(custoBeneficio > custoBeneficioMV && pesoTOtal + item->peso < entrada.W){
+            if(custoBeneficio > custoBeneficioMV && pesoTotal + item->peso < entrada.W){
                 maisValioso = item;
                 custoBeneficioMV = custoBeneficio;
             }
