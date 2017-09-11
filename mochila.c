@@ -1,15 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct item{
-    int valor;
-    int peso;
-    struct item *proximo;
-} Item;
+#include "modelos/item/item.h"
 
 typedef struct entrada{
     int n; // número de itens na loja
-    int W; // peso máximod a mochila
+    int W; // peso máximo da mochila
     Item *itens; // Conjunto de itens
 } Entrada;
 
