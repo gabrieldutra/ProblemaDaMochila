@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "modelos/item/item.h"
 #include "modelos/util/util.h"
+#include "algoritmos/guloso/guloso.h"
 
 int main(int argc, char *argv[]){
     
@@ -29,11 +30,19 @@ int main(int argc, char *argv[]){
 
     Entrada entrada = util_carregaDados(arquivo);
 
-    Item *solucao = NULL;
-    Item *solucaoAtual = NULL;
-    int pesoTotal = 0;
-
-    
+    // Algoritmo Guloso
+    if(algoritmoEscolhido == 2){
+        Item *solucao = guloso(entrada);        
+        int pesoTotal=0;
+        int valorTotal=0;
+        while(solucao != NULL){
+            pesoTotal+=solucao->peso;
+            valorTotal+=solucao->valor;
+            printf("%d %d\n", solucao->peso, solucao->valor);
+            solucao = solucao->proximo;
+        }
+        printf("Peso Total: %d Valor Total: %d\n", pesoTotal,valorTotal);
+    }
     
     return 0;
 }

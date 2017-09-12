@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "item.h"
 
 /** Item - Cria Lista com o primeiro item
 * @param primeiroItem - Primeiro item da lista
@@ -7,8 +8,8 @@
 **/
 Item *item_criaLista(Item primeiroItem){
     Item *novoItem = (Item *) malloc(sizeof(Item));
-    novoItem->valor = item.valor;
-    novoItem->peso = item.peso;
+    novoItem->valor = primeiroItem.valor;
+    novoItem->peso = primeiroItem.peso;
     novoItem->proximo = NULL;
     return novoItem;
 }
@@ -18,11 +19,23 @@ Item *item_criaLista(Item primeiroItem){
 * @param item - Item a ser adicionado
 * @param lista - Lista a ter o elemento adicionado
 **/
-void *item_adicionaItem(Item item, Item *lista){
+void item_adicionaItem(Item item, Item *lista){
     Item *novoItem = (Item *) malloc(sizeof(Item));
     while(lista->proximo != NULL) lista = lista->proximo; // vai até o final da lista
     novoItem->valor = item.valor;
     novoItem->peso = item.peso;
     novoItem->proximo = NULL;
     lista->proximo = novoItem;
+}
+
+/** Item - Remove Item
+* @param item - Item a ser removido
+* @param anterior - Item anterior
+* @param lista - Lista de itens
+* @return Item* - Nova lista de itens
+**/
+Item *item_removeItem(Item *item, Item *anterior, Item *lista){
+    if(anterior == NULL) return item->proximo;
+    anterior->proximo = item->proximo;
+    return lista;
 }
