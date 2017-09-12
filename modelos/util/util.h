@@ -3,3 +3,5 @@ typedef struct entrada{
     int W; // peso máximo da mochila
     Item *itens; // Conjunto de itens
 } Entrada;
+
+Entrada util_carregaDados(FILE *arquivo);

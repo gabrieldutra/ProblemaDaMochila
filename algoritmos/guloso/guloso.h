@@ -1,0 +1,1 @@
+Item *guloso(Entrada entrada);
