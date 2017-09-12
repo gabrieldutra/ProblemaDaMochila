@@ -1,7 +1,7 @@
 CC=gcc
 OPCOES_COMPILADOR=-lm
-TODOS_ARQUIVOS_PONTOH = modelos/item/item.h
-TODOS_ARQUIVOS_OBJ = mochila.o modelos/item/item.o algoritmos/backtracking/backtracking.o algoritmos/guloso/guloso.o
+TODOS_ARQUIVOS_PONTOH = modelos/util/util.h modelos/item/item.h algoritmos/backtracking/backtracking.h algoritmos/guloso/guloso.h
+TODOS_ARQUIVOS_OBJ = mochila.o modelos/util/util.o modelos/item/item.o algoritmos/backtracking/backtracking.o algoritmos/guloso/guloso.o
 
 %.o: ../%.c $(TODOS_ARQUIVOS_PONTOH)
 	$(CC) -o $@ -c $< $(OPCOES_COMPILADOR)
