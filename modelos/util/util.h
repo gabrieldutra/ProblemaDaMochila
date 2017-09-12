@@ -5,3 +5,4 @@ typedef struct entrada{
 } Entrada;
 
 Entrada util_carregaDados(FILE *arquivo);
+void util_salvaSolucao(FILE *arquivo, Item *solucao);

@@ -38,3 +38,21 @@ Entrada util_carregaDados(FILE *arquivo){
 
     return entrada;
 }
+
+/** Salva Solução - salva solução em arquivo 
+* @param arquivo - Arquivo para salvar
+* @param solucao - Solução a ser salva
+**/
+void util_salvaSolucao(FILE *arquivo, Item *solucao){
+    int contador=1;
+    int pesoTotal=0;
+    int valorTotal=0;
+    while(solucao != NULL){
+        pesoTotal+=solucao->peso;
+        valorTotal+=solucao->valor;
+        fprintf(arquivo, "%d %d %d\n", contador, solucao->peso, solucao->valor);
+        contador++;
+        solucao = solucao->proximo;
+    }
+    fprintf(arquivo, "Peso Total: %d Valor Total: %d\n", pesoTotal, valorTotal);
+}

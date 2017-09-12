@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
     char *arquivoEntrada = argv[1];
     int algoritmoEscolhido = atoi(argv[2]);
 
-    FILE *arquivo = fopen(argv[1], "r");
+    FILE *arquivo = fopen(arquivoEntrada, "r");
     // Verifica caso não tenha sido possível abrir o arquivo
     if(!arquivo){
         printf("Não foi possível abrir o arquivo '%s'.\n", argv[1]);
@@ -30,6 +30,20 @@ int main(int argc, char *argv[]){
     }
 
     Entrada entrada = util_carregaDados(arquivo);
+    fclose(arquivo);
+
+    // Extrai só o nome do arquivo de entrada sem a extensão
+    char *nomeArquivoEntrada = arquivoEntrada;
+    char *iterador = nomeArquivoEntrada;
+    char *extensao = NULL;
+    while(*iterador != '\0'){
+        if(*iterador == '/') nomeArquivoEntrada = iterador+1;
+        if(*iterador == '.') {
+            extensao = iterador;
+        }
+        iterador++;
+    } 
+    *extensao = '\0';
 
     // Backtracking
     if(algoritmoEscolhido == 1){
@@ -40,29 +54,23 @@ int main(int argc, char *argv[]){
         global.pesoOtimo = 0;
         backtracking(entrada.itens, 0, 0, NULL, &global);
         Item *solucao = global.solucaoOtima;
-        int pesoTotal=0;
-        int valorTotal=0;
-        while(solucao != NULL){
-            pesoTotal+=solucao->peso;
-            valorTotal+=solucao->valor;
-            printf("%d %d\n", solucao->peso, solucao->valor);
-            solucao = solucao->proximo;
-        }
-        printf("Peso Total: %d Valor Total: %d\n", pesoTotal,valorTotal);
+
+        char arquivoSaida[200];
+        sprintf(arquivoSaida, "./dataset/out/%s-out-backtracking.txt",nomeArquivoEntrada);
+        FILE *arquivoS = fopen(arquivoSaida, "w");
+        util_salvaSolucao(arquivoS, solucao);
+        fclose(arquivoS);
     }
 
     // Algoritmo Guloso
     if(algoritmoEscolhido == 2){
-        Item *solucao = guloso(entrada);        
-        int pesoTotal=0;
-        int valorTotal=0;
-        while(solucao != NULL){
-            pesoTotal+=solucao->peso;
-            valorTotal+=solucao->valor;
-            printf("%d %d\n", solucao->peso, solucao->valor);
-            solucao = solucao->proximo;
-        }
-        printf("Peso Total: %d Valor Total: %d\n", pesoTotal,valorTotal);
+        Item *solucao = guloso(entrada);   
+        
+        char arquivoSaida[200];
+        sprintf(arquivoSaida, "./dataset/out/%s-out-guloso.txt",nomeArquivoEntrada);
+        FILE *arquivoS = fopen(arquivoSaida, "w");  
+        util_salvaSolucao(arquivoS, solucao);
+        fclose(arquivoS);
     }
     
     return 0;
