@@ -39,3 +39,22 @@ Item *item_removeItem(Item *item, Item *anterior, Item *lista){
     anterior->proximo = item->proximo;
     return lista;
 }
+
+/** Item - Copia e insere (Copia a lista e insere um elemento ao final)
+* @param item - Item a ser inserido
+* @param lista - lista de itens
+* @return Item* - Nova Lista
+**/
+Item *item_copiaEInsere(Item item, Item *lista){
+    if(lista == NULL) return item_criaLista(item);
+    Item *novaLista = item_criaLista(*lista);
+    Item *novaListaAtual = novaLista;
+    if(lista != NULL) lista=lista->proximo;
+    while(lista != NULL){
+        item_adicionaItem(*lista, novaListaAtual);
+        novaListaAtual = novaListaAtual->proximo;
+        lista = lista->proximo;
+    }
+    item_adicionaItem(item, novaListaAtual);
+    return novaLista;
+}

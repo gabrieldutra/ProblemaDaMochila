@@ -3,6 +3,7 @@
 #include "modelos/item/item.h"
 #include "modelos/util/util.h"
 #include "algoritmos/guloso/guloso.h"
+#include "algoritmos/backtracking/backtracking.h"
 
 int main(int argc, char *argv[]){
     
@@ -29,6 +30,26 @@ int main(int argc, char *argv[]){
     }
 
     Entrada entrada = util_carregaDados(arquivo);
+
+    // Backtracking
+    if(algoritmoEscolhido == 1){
+        Global global;
+        global.entrada = entrada;
+        global.solucaoOtima = NULL;
+        global.valorOtimo = 0;
+        global.pesoOtimo = 0;
+        backtracking(entrada.itens, 0, 0, NULL, &global);
+        Item *solucao = global.solucaoOtima;
+        int pesoTotal=0;
+        int valorTotal=0;
+        while(solucao != NULL){
+            pesoTotal+=solucao->peso;
+            valorTotal+=solucao->valor;
+            printf("%d %d\n", solucao->peso, solucao->valor);
+            solucao = solucao->proximo;
+        }
+        printf("Peso Total: %d Valor Total: %d\n", pesoTotal,valorTotal);
+    }
 
     // Algoritmo Guloso
     if(algoritmoEscolhido == 2){
