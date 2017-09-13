@@ -8,6 +8,7 @@
 **/
 Item *item_criaLista(Item primeiroItem){
     Item *novoItem = (Item *) malloc(sizeof(Item));
+    novoItem->numero = primeiroItem.numero;
     novoItem->valor = primeiroItem.valor;
     novoItem->peso = primeiroItem.peso;
     novoItem->proximo = NULL;
@@ -22,6 +23,7 @@ Item *item_criaLista(Item primeiroItem){
 void item_adicionaItem(Item item, Item *lista){
     Item *novoItem = (Item *) malloc(sizeof(Item));
     while(lista->proximo != NULL) lista = lista->proximo; // vai até o final da lista
+    novoItem->numero = item.numero;
     novoItem->valor = item.valor;
     novoItem->peso = item.peso;
     novoItem->proximo = NULL;

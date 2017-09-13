@@ -1,4 +1,4 @@
 1 1 5
 2 2 10
-3 6 6
+4 6 6
 Peso Total: 9 Valor Total: 21

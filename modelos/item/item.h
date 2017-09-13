@@ -1,4 +1,5 @@
 typedef struct item{
+    int numero;
     int valor;
     int peso;
     struct item *proximo;

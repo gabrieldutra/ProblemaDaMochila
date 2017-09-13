@@ -22,6 +22,7 @@ Entrada util_carregaDados(FILE *arquivo){
     int i;
     for(i = 0; i < n; i++){
         Item novoItem;
+        novoItem.numero = i+1;
         fscanf(arquivo, "%d %d", &novoItem.peso, &novoItem.valor);
         if(itens == NULL){ // Caso não exista o primeiro elemento da lista, cria ele
             itens = item_criaLista(novoItem);
@@ -44,14 +45,12 @@ Entrada util_carregaDados(FILE *arquivo){
 * @param solucao - Solução a ser salva
 **/
 void util_salvaSolucao(FILE *arquivo, Item *solucao){
-    int contador=1;
     int pesoTotal=0;
     int valorTotal=0;
     while(solucao != NULL){
         pesoTotal+=solucao->peso;
         valorTotal+=solucao->valor;
-        fprintf(arquivo, "%d %d %d\n", contador, solucao->peso, solucao->valor);
-        contador++;
+        fprintf(arquivo, "%d %d %d\n", solucao->numero, solucao->peso, solucao->valor);
         solucao = solucao->proximo;
     }
     fprintf(arquivo, "Peso Total: %d Valor Total: %d\n", pesoTotal, valorTotal);

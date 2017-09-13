@@ -33,6 +33,7 @@ Item *guloso(Entrada entrada){
         if(maisValioso == NULL) break; // Caso não tenha maisValioso, sai do loop
 
         Item novoItem;
+        novoItem.numero = maisValioso->numero;
         novoItem.valor = maisValioso->valor;
         novoItem.peso = maisValioso->peso;
 
