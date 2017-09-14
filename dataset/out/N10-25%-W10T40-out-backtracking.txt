@@ -1,0 +1,4 @@
+5 3 59
+7 2 99
+10 5 96
+Peso Total: 10 Valor Total: 254

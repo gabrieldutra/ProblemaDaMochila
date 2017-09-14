@@ -14,8 +14,9 @@ else
         pesoMaximo=$4;
         valorMinimo=$5;
         valorMaximo=$6;
-        somaPesos=$7
-        arquivo="N"$n"-W"$w;
+        somaPesos=$7;
+        percentual=$(((w*100)/somaPesos));
+        arquivo="N"$n"-"$percentual"%-W"$w;
         echo "$w" > $arquivo
         echo "$n" >> $arquivo
         t=0;
