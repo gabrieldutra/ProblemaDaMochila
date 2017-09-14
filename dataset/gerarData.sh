@@ -32,6 +32,7 @@ else
             fim=1
             mv $arquivo $arquivo"T"$t".txt"
         else
+            echo $t # Para poder enxergar a variância (A curva de Gauss se faz presente)
             rm $arquivo
         fi
     done
