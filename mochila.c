@@ -37,8 +37,15 @@ int main(int argc, char *argv[]){
         return 0;
     }
 
+    long long tempoInicio, tempoFim;
+
+    tempoInicio = util_tempoAtual();
     Entrada entrada = util_carregaDados(arquivo);
     fclose(arquivo);
+
+    tempoFim = util_tempoAtual();
+
+    printf("Tempo para carregar entrada: %lld\n", tempoFim-tempoInicio);
 
     // Extrai só o nome do arquivo de entrada sem a extensão
     char *nomeArquivoEntrada = arquivoEntrada;
@@ -55,6 +62,9 @@ int main(int argc, char *argv[]){
 
     // Backtracking
     if(algoritmoEscolhido == 1){
+
+        tempoInicio = util_tempoAtual();
+
         Global global;
         global.entrada = entrada;
         global.solucaoOtima = NULL;
@@ -62,23 +72,42 @@ int main(int argc, char *argv[]){
         global.pesoOtimo = 0;
         backtracking(entrada.itens, 0, 0, NULL, &global);
         Item *solucao = global.solucaoOtima;
+        
+        tempoFim = util_tempoAtual();
+        printf("Tempo Backtracking: %lld\n", tempoFim-tempoInicio);
+
+        tempoInicio = util_tempoAtual();
 
         char arquivoSaida[200];
         sprintf(arquivoSaida, "./dataset/out/%s-out-backtracking.txt",nomeArquivoEntrada);
         FILE *arquivoS = fopen(arquivoSaida, "w");
         util_salvaSolucao(arquivoS, solucao);
         fclose(arquivoS);
+
+        tempoFim = util_tempoAtual();
+        printf("Tempo Salvar Saída: %lld\n", tempoFim-tempoInicio);
     }
 
     // Algoritmo Guloso
     if(algoritmoEscolhido == 2){
+        tempoInicio = util_tempoAtual();
+
         Item *solucao = guloso(entrada);   
+        
+        tempoFim = util_tempoAtual();
+        printf("Tempo Guloso: %lld\n", tempoFim-tempoInicio);
+
+
+        tempoInicio = util_tempoAtual();
         
         char arquivoSaida[200];
         sprintf(arquivoSaida, "./dataset/out/%s-out-guloso.txt",nomeArquivoEntrada);
         FILE *arquivoS = fopen(arquivoSaida, "w");  
         util_salvaSolucao(arquivoS, solucao);
         fclose(arquivoS);
+
+        tempoFim = util_tempoAtual();
+        printf("Tempo Salvar Saída: %lld\n", tempoFim-tempoInicio);
     }
     
     return 0;

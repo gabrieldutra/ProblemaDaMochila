@@ -8,6 +8,7 @@ Data: 14/09/2017
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/time.h>
 #include "../item/item.h"
 #include "util.h"
 
@@ -62,4 +63,14 @@ void util_salvaSolucao(FILE *arquivo, Item *solucao){
         solucao = solucao->proximo;
     }
     fprintf(arquivo, "Peso Total: %d Valor Total: %d\n", pesoTotal, valorTotal);
+}
+
+/** Tempo Atual
+* @return long long - Tempo atual em milisegundos
+**/
+long long util_tempoAtual(){
+    struct timeval te; 
+    gettimeofday(&te, NULL);
+    long long milliseconds = te.tv_sec*1000LL + te.tv_usec/1000;
+    return milliseconds;
 }
