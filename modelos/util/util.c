@@ -68,9 +68,9 @@ void util_salvaSolucao(FILE *arquivo, Item *solucao){
 /** Tempo Atual
 * @return long long - Tempo atual em milisegundos
 **/
-long long util_tempoAtual(){
+double util_tempoAtual(){
     struct timeval te; 
     gettimeofday(&te, NULL);
-    long long milliseconds = te.tv_sec*1000LL + te.tv_usec/1000;
+    double milliseconds = te.tv_sec*1000LL + (double)te.tv_usec/1000;
     return milliseconds;
 }

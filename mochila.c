@@ -37,7 +37,7 @@ int main(int argc, char *argv[]){
         return 0;
     }
 
-    long long tempoInicio, tempoFim;
+    double tempoInicio, tempoFim;
 
     tempoInicio = util_tempoAtual();
     Entrada entrada = util_carregaDados(arquivo);
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
 
     tempoFim = util_tempoAtual();
 
-    printf("Tempo para carregar entrada: %lld\n", tempoFim-tempoInicio);
+    printf("Tempo para carregar entrada: %f ms\n", tempoFim-tempoInicio);
 
     // Extrai só o nome do arquivo de entrada sem a extensão
     char *nomeArquivoEntrada = arquivoEntrada;
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]){
         Item *solucao = global.solucaoOtima;
         
         tempoFim = util_tempoAtual();
-        printf("Tempo Backtracking: %lld\n", tempoFim-tempoInicio);
+        printf("Tempo Backtracking: %f ms\n", tempoFim-tempoInicio);
 
         tempoInicio = util_tempoAtual();
 
@@ -85,7 +85,7 @@ int main(int argc, char *argv[]){
         fclose(arquivoS);
 
         tempoFim = util_tempoAtual();
-        printf("Tempo Salvar Saída: %lld\n", tempoFim-tempoInicio);
+        printf("Tempo Salvar Saída: %f ms\n", tempoFim-tempoInicio);
     }
 
     // Algoritmo Guloso
@@ -95,7 +95,7 @@ int main(int argc, char *argv[]){
         Item *solucao = guloso(entrada);   
         
         tempoFim = util_tempoAtual();
-        printf("Tempo Guloso: %lld\n", tempoFim-tempoInicio);
+        printf("Tempo Guloso: %f ms\n", tempoFim-tempoInicio);
 
 
         tempoInicio = util_tempoAtual();
@@ -107,7 +107,7 @@ int main(int argc, char *argv[]){
         fclose(arquivoS);
 
         tempoFim = util_tempoAtual();
-        printf("Tempo Salvar Saída: %lld\n", tempoFim-tempoInicio);
+        printf("Tempo Salvar Saída: %f ms\n", tempoFim-tempoInicio);
     }
     
     return 0;

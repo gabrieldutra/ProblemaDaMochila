@@ -14,4 +14,4 @@ typedef struct entrada{
 
 Entrada util_carregaDados(FILE *arquivo);
 void util_salvaSolucao(FILE *arquivo, Item *solucao);
-long long util_tempoAtual();
+double util_tempoAtual();
